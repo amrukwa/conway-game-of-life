@@ -1,0 +1,66 @@
+while (g > 0)
+	{
+		for (int i = 0; i < m; i++)
+		{
+			for (int j = 0; j < n; j++)
+			{
+				if ((i > 0) && (i < (m - 1)) && (j > 0) && (j < (n - 1))) //typical conditions
+				{
+				int a=((array[i - 1][j - 1]) + (array[i - 1][j]) + (array[i - 1][j + 1]) + (array[i][j - 1]) + (array[i][j + 1]) + (array[i + 1][j - 1]) + (array[i + 1][j]) + (array[i + 1][j + 1]));
+					} //end of typical conditions
+				else //border conditions
+				{
+				if((i=0)&&(j=0)) //corner left-up
+				{
+				int a= (array[0][1])+(array[1][0])+(array[1][1]);
+				}
+				if((i=0)&&(j=n)) //corner right-up
+				{
+				int a=(array[0][j-1])+(array[1][j])+(array[1][j-1]);
+				}
+				if((i=m)&&(j=0)) //corner left-down
+				{
+				int a=(array[i-1][0])+(array[i][1])+(array[i-1][1]);
+				}
+				if((i=m)&&(j=n)) //corner right-down
+				{
+				int a=(array[i-1][j])+(array[i-1][j-1])+(array[i][j-1]);
+				}
+				//sides of the lab
+
+				}
+				if (a>= 4)
+						newarray[i][j] = 0;
+
+					else if (a<= 1)
+						newarray[i][j] = 0;
+
+					else if (a == 3)
+						newarray[i][j] = 1;
+
+					else
+						newarray[i][j] = array[i][j];
+			}
+		};
+		for (int i = 0; i < m; i++)
+		{
+			for (int j = 0; j < n; j++)
+			{
+				array[i][j] = newarray[i][j];
+			}
+		};
+		g--;
+	}
+
+	for (int i = 0; i < m; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			if (array[i][j]==1)
+			printf("o ");
+			else
+				printf("  ");
+		}
+
+		printf("\n");
+	};
