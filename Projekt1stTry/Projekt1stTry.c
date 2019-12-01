@@ -1,73 +1,105 @@
-﻿// Projekt1stTry.cpp : Ten plik zawiera funkcję „main”. W nim rozpoczyna się i kończy wykonywanie programu.
-//
 #include <stdio.h>
-#include <stdlib.h>
-int main()
+void printing(int alive)
 {
-	int p, a, m, n, g;
-	int array[50][50], newarray[50][50];
-	printf("Type the value of the percentage of chance for the cell to be alive.\n");
-	scanf_s("%i", &p);
-	printf("\n"); 
-
-	printf("Type the height of the laboratory.\n");
-	scanf_s("%i", &m);
-	printf("\n");
-
-	printf("Type the width of the laboratory.\n");
-	scanf_s("%i", &n);
-	printf("\n");
-
-	printf("Type the number of generations.\n");
-	scanf_s("%i", &g);
-	printf("\n");
-
-	int arrray = (int long*)malloc(m * n * sizeof(int));
-	int newarrray = (int long*)malloc(m * n * sizeof(int));
-
-	 for(int i=0; i<m; i++)
+	if (alive == 0)
 	{
-		 for (int j = 0; j < n; j++)
-		 {
-			 array[i][j] = rand() % 100 + 1; //random loop
-			 a = array[i][j];
-
-			if (a > p)
-			 {
-				 array[i][j] = 0;
-			 }
-			 if (a<= p)
-			 {
-				 array[i][j] = 1;
-			 }
-		 }
-	}; 
-	
-	for (int i = 0; i<m; i++)
+		printf("  ");
+	}
+	else
 	{
-		for (int j = 0; j <n; j++)
-		{
-			if (array[i][j]==1)
-			printf("o ");
-			else
-				printf("  ");
-		}
-
-		printf("\n");
-	};
-	
-	
-
+		printf("o ");
+	}
+}
+int result(int neighbourhood, int ancestor) 
+{
+	if(neighbourhood<=1 || neighbourhood>=4)
+	{
+		return 0;
+	}
+	if(neighbourhood==3)
+	{
+		return 1;
+	}
+	return ancestor;
+}
+int firstset(int probability, int cell)
+{
+	cell= rand() % 100 + 1;
+	if (cell <= probability)
+	{
+		return 1;
+	}
 	return 0;
 }
 
-// Uruchomienie programu: Ctrl + F5 lub menu Debugowanie > Uruchom bez debugowania
-// Debugowanie programu: F5 lub menu Debugowanie > Rozpocznij debugowanie
+int main()
+{
+	int m_rows, n_cols;
+	int p;
+	int gen=5;
+	int nearby;
+	printf("Set the number of rows.\n");
+	scanf_s("%i", &m_rows);
+	printf("Set the number of columns.\n");
+	scanf_s("%i", &n_cols);
+	printf("Set the chance of cell to be alive.\n");
+	scanf_s("%i", &p);
+	printf("\n");
 
-// Porady dotyczące rozpoczynania pracy:
-//   1. Użyj okna Eksploratora rozwiązań, aby dodać pliki i zarządzać nimi
-//   2. Użyj okna programu Team Explorer, aby nawiązać połączenie z kontrolą źródła
-//   3. Użyj okna Dane wyjściowe, aby sprawdzić dane wyjściowe kompilacji i inne komunikaty
-//   4. Użyj okna Lista błędów, aby zobaczyć błędy
-//   5. Wybierz pozycję Projekt > Dodaj nowy element, aby utworzyć nowe pliki kodu, lub wybierz pozycję Projekt > Dodaj istniejący element, aby dodać istniejące pliku kodu do projektu
-//   6. Aby w przyszłości ponownie otworzyć ten projekt, przejdź do pozycji Plik > Otwórz > Projekt i wybierz plik sln
+	long int* array = malloc(m_rows * n_cols * sizeof(int));
+	long int* newarray = malloc(m_rows * n_cols * sizeof(int));
+	for (int i = 0; i < m_rows; i++)
+	{
+		for (int j = 0; j < n_cols; j++)
+		{
+			array[i * n_cols + j] = firstset(p,array[i*n_cols+j]);
+			printing(array[i * n_cols + j]);
+		}
+		printf("\n");
+	}
+	//printf("How many more generations would you like?\n");
+	//scanf_s("%i", &gen);
+	for (; gen > 0; gen--)
+	{
+		for (int i = 0; i < m_rows; i++)
+		{
+			for (int j = 0; j < n_cols; j++)
+			{
+				if (i == 0 && j == 0)
+				{
+					nearby = array[n_cols] + array[1] + array[n_cols + 1];
+				}
+				else if(i==0 && j==(n_cols-1))
+				{
+					nearby = array[n_cols-2] + array[2 * n_cols - 2] + array[2*n_cols - 1];
+				}
+				else if(i==(m_rows-1)&&j==0)
+				{
+					nearby = array[n_cols*(m_rows - 2)] + array[n_cols*(m_rows-1)+n_cols-2] + array[(m_rows-2)* n_cols + 1];
+				}
+				else if (i == (m_rows - 1) && j == (n_cols - 1))//end of corners
+				{
+					nearby = array[n_cols * (m_rows - 2)+n_cols-1] + array[n_cols * (m_rows - 2) + n_cols - 1] + array[n_cols*(m_rows - 2) + n_cols-2];
+				}
+
+				newarray[n_cols * i + j] = result(nearby, array[n_cols * i + j]);
+			}
+		}
+		for (int i = 0; i < m_rows; i++)//rotation of arrays
+		{
+			for (int j = 0; j < n_cols; j++)
+			{
+				array[i * n_cols + j] = newarray[i * n_cols + j];
+			}
+		}
+	}
+	for (int i = 0; i < m_rows; i++)//printing the last generation
+	{
+		for (int j = 0; j < n_cols; j++)
+		{
+			printing(array[i * n_cols + j]);
+		}
+		printf("\n");
+	}
+	return 0;
+}
