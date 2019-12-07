@@ -23,6 +23,7 @@
     <ProjectGuid>{8994772C-15BA-4B2E-B097-BCF23E2F8DD0}</ProjectGuid>
     <RootNamespace>Dynamic2D</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>conway-game-of-life</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
