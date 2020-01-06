@@ -21,7 +21,7 @@ These rules influence whether the cell will be alive in next generation or not.T
 
 After seeing the first generation player decides after how many more generations they'd like to see the lab again. All the decisions together with outcomes - first and last generation - is stored in output file.
 
-## The programme
+## The program
 
 You can download the program here:
 https://github.com/amrukwa/conway-game-of-life/releases

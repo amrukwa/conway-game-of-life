@@ -126,6 +126,11 @@ void compute_next_state(long int* current, long int* next, int m_rows, int n_col
 	}
 }
 
+void stopFromClosing()
+{
+	printf("Press any key to continue...\n");
+	char c = getchar();
+}
 
 int main()
 {
@@ -162,5 +167,6 @@ int main()
 	free(current);
 	free(next);
 	fclose(lab);
+	stopFromClosing;
 	return 0;
 }
