@@ -15,7 +15,7 @@ artifacts:
   name: executable-$(configuration)
 deploy:
 - provider: GitHub
-  tag: conway-game-of-life-v$(appveyor-build-version)
+  tag: conway-game-of-life-v$(appveyor_build_version)
   auth_token:
     secure: SYXtRdG+3FpTZcSKWje5OmvtUU5rH4+wWloHdBkZJbpY/w8XAQUZK2Y/lzVt6kCD
   artifact: /.*\.exe/
