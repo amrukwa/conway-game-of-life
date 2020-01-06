@@ -20,6 +20,7 @@ deploy:
     secure: SYXtRdG+3FpTZcSKWje5OmvtUU5rH4+wWloHdBkZJbpY/w8XAQUZK2Y/lzVt6kCD
   artifact: /.*\.exe/
   on:
+    configuration: Release
     branch: master
 notifications:
 - provider: Email
