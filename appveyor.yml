@@ -17,7 +17,7 @@ deploy:
 - provider: GitHub
   tag: conway-game-of-life-v$(appveyor-build-version)
   auth_token:
-    secure: vO42FzQgJ49lZvbOPBSOgUUEUjrZJcWLZlKqKbmxrCJNyEHPKxQBFG4vPiVOj3gngPMfSoWQWvVHzPMhQnLvnoMf2tcKeQtDypH4qWoiCOA=
+    secure: SYXtRdG+3FpTZcSKWje5OmvtUU5rH4+wWloHdBkZJbpY/w8XAQUZK2Y/lzVt6kCD
   artifact: /.*\.exe/
   on:
     branch: master
