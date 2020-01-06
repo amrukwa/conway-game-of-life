@@ -20,7 +20,7 @@ deploy:
     secure: vO42FzQgJ49lZvbOPBSOgUUEUjrZJcWLZlKqKbmxrCJNyEHPKxQBFG4vPiVOj3gngPMfSoWQWvVHzPMhQnLvnoMf2tcKeQtDypH4qWoiCOA=
   artifact: /.*\.exe/
   on:
-    APPVEYOR_REPO_BRANCH: master
+    branch: master
 notifications:
 - provider: Email
   to:
