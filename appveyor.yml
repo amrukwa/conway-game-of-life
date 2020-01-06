@@ -1,0 +1,30 @@
+version: 1.0.0.{build}
+skip_branch_with_pr: true
+image: Visual Studio 2019
+configuration:
+- Debug
+- Release
+platform: x64
+build:
+  project: Dynamic 2D.sln
+  parallel: true
+  verbosity: minimal
+test: off
+artifacts:
+- path: '**\*.exe'
+  name: executable-$(configuration)
+deploy:
+- provider: GitHub
+  tag: conway-game-of-life-v$(appveyor-build-version)
+  auth_token:
+    secure: vO42FzQgJ49lZvbOPBSOgUUEUjrZJcWLZlKqKbmxrCJNyEHPKxQBFG4vPiVOj3gngPMfSoWQWvVHzPMhQnLvnoMf2tcKeQtDypH4qWoiCOA=
+  artifact: /.*\.exe/
+  on:
+    APPVEYOR_REPO_BRANCH: master
+notifications:
+- provider: Email
+  to:
+  - a.mrukwa00@gmail.com
+  on_build_success: true
+  on_build_failure: true
+  on_build_status_changed: false
