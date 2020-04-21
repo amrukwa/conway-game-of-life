@@ -1,7 +1,7 @@
 # Conway - game of life
 
 [![Build status](https://ci.appveyor.com/api/projects/status/54toka2m07mqg3uk/branch/master?svg=true)](https://ci.appveyor.com/project/amrukwa/conway-game-of-life/branch/master)
-
+[![CodeFactor](https://www.codefactor.io/repository/github/amrukwa/conway-game-of-life/badge)](https://www.codefactor.io/repository/github/amrukwa/conway-game-of-life)
 ## Classic Conway game of life simulation
 
 
